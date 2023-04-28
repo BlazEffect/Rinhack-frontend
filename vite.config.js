@@ -8,7 +8,7 @@ export default defineConfig({
     //host: 'rinhack.local',
     proxy: {
       '/api': {
-        target: 'http://api.rinhack.local:8000',
+        target: 'http://127.0.0.1:8000',
         changeOrigin: true,
         secure: false,
         ws: true
