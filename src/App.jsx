@@ -24,7 +24,7 @@ function App() {
     setFileName(file.name);
     setLoading(true);
     const formData = new FormData();
-    formData.append(file);
+    formData.append('document', file);
     axios.post("/api/sendfile", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
