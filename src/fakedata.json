@@ -1,0 +1,34 @@
+[
+    {
+        "title": "Test",
+        "text": "",
+        "items": [
+            {
+                "title": "Test node #1",
+                "text": "Test test #1",
+                "items": []
+            },
+            {
+                "title": "Test node #2",
+                "text": "Test test #2",
+                "items": []
+            }
+        ]
+    },
+    {
+        "title": "Test2",
+        "text": "",
+        "items": [
+            {
+                "title": "Test node #1",
+                "text": "Test test #1",
+                "items": []
+            },
+            {
+                "title": "Test node #2",
+                "text": "Test test #2",
+                "items": []
+            }
+        ]
+    }
+]

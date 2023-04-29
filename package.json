@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -12,8 +12,10 @@
   "dependencies": {
     "@tinymce/tinymce-react": "^4.3.0",
     "axios": "^1.3.6",
+    "mind-elixir": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-toastify": "^9.1.2",
     "react-tree-graph": "^8.0.1",
     "tailwind": "^4.0.0"
   },
