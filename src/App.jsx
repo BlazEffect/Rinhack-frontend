@@ -16,6 +16,7 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [nodeText, setNodeText] = useState('');
   const [nodeTitle, setNodeTitle] = useState('');
+  const [initialValue, setInitialValue] = useState("<p>1. Пример форматирования</p>\n    <p>1.1. По началу идут заголовки</p>\n    <p>1.2. Обязательно проставлять цифры перед заголовками</p>\n    <p>1.3. Каждый подпункт является дочерним корневого</p>\n    Под заголовками можно писать текст");
   const [text, setText] = useState('');
   const editorRef = useRef(null);
 
@@ -68,6 +69,7 @@ function App() {
         checkErrors();
       }else{
         setData(data);
+        setInitialValue(data['text'])
       }
       setLoading(false)
     });
@@ -90,14 +92,6 @@ function App() {
     setNodeTitle(node.topic);
     setIsOpen(true);
   }
-
-  const initialValue = `
-    <p>1. Пример форматирования</p>
-    <p>1.1. По началу идут заголовки</p>
-    <p>1.2. Обязательно проставлять цифры перед заголовками</p>
-    <p>1.3. Каждый подпункт является дочерним корневого</p>
-    Под заголовками можно писать текст
-  `;
 
   //if (loading !== null) {
   return (

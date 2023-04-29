@@ -4,25 +4,8 @@ import { useEffect, useState } from "react";
 export default function MindMap({ data, handleClick }) {
   const nodeData = {
     nodeData: {
-      topic: "node topic",
-      
-      text: `asasdasddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddasdasdsadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd`,
-      children: [
-        {
-          topic: "child",
-          
-          children: [
-            {
-                topic: 'another children',
-                
-            },
-            {
-                topic: 'another children',
-                
-            },
-          ]
-        },
-      ],
+      topic: "Ядро",
+      text: `Ядро`,
     },
   };
 
