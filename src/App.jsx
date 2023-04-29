@@ -18,26 +18,10 @@ function App() {
   const [nodeTitle, setNodeTitle] = useState('');
   const [text, setText] = useState('');
   const editorRef = useRef(null);
-  // useEffect(() => {
-  //   axios.get('api/test/').then(r => setLoading(r.data));
-  // });
 
   const checkErrors = () => {
-    axios.get('/api/getdocs').then(({data}) => {
-      if(data?.["Error"] === 'unableToFetchFilePath') {
-        toast.error('Неправильный формат!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-      }
-      if(data?.["Error"] === 'unableToDefineFileFormat') {
-        toast.error('Поддерживаются файлы в формате .docx', {
+    if(data?.["Error"] === 'unableToFetchFilePath') {
+      toast.error('Неправильный формат!', {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -47,8 +31,19 @@ function App() {
           progress: undefined,
           theme: "light",
         });
-      }
-    })
+    }
+    if(data?.["Error"] === 'unableToDefineFileFormat') {
+      toast.error('Поддерживаются файлы в формате .docx', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   }
 
   const sendFile = (event) => {
@@ -64,13 +59,15 @@ function App() {
     setLoading(true);
     const formData = new FormData();
     formData.append('document', file);
-    axios.post("/api/sendfile", formData, {
+    axios.post("/api/getdocx", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     }).then(({data}) => {
       if(data?.['Error']) {
         checkErrors();
+      }else{
+        setData(data);
       }
       setLoading(false)
     });
@@ -78,9 +75,11 @@ function App() {
 
   const refreshMindMap = () => {
     if(text?.length) {
-      axios.post('/api/refreshMindMap', text).then(({data}) => {
+      axios.post('/api/refreshmindmap', text).then(({data}) => {
         if(data?.["Error"]) {
           checkErrors();
+        }else{
+          setData(data);
         }
       })
     }
@@ -94,9 +93,9 @@ function App() {
 
   const initialValue = `
     <p>1. Пример форматирования</p>
-    <p>1.1 По началу идут заголовки</p>
-    <p>1.2 Обязательно проставлять цифры перед заголовками</p>
-    <p>1.3 Каждый подпункт является дочерним корневого</p>
+    <p>1.1. По началу идут заголовки</p>
+    <p>1.2. Обязательно проставлять цифры перед заголовками</p>
+    <p>1.3. Каждый подпункт является дочерним корневого</p>
     Под заголовками можно писать текст
   `;
 
@@ -107,13 +106,13 @@ function App() {
       <div className="h-calc flex justify-between">
         <div className="w-[40%] change-width p-[63px] flex justify-between flex-col bg-[#1E1E1E]">
           <div className="h-full">
-            <Editor 
+            <Editor
               outputFormat='text'
               onInit={(evt, editor) => editorRef.current = editor}
               initialValue={initialValue}
               onEditorChange={(newValue, editor) => {
                 setText(editor.getContent({format: 'text'}))
-              }} 
+              }}
               apiKey="tyd73in3c1ci1zq65y52urxufz4hnzrln2ha7ameio8nfl9t"></Editor>
           </div>
           <div className="items-end">
